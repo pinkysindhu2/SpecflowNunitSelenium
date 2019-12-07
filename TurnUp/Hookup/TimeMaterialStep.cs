@@ -1,6 +1,7 @@
 ﻿using System;
-
+using OpenQA.Selenium;
 using TechTalk.SpecFlow;
+using TurnUp.Settings;
 
 namespace TurnUp.Hookup
 {
@@ -11,19 +12,20 @@ namespace TurnUp.Hookup
         [Given(@"I have logged into TurnUp portal")]
         public void GivenIHaveLoggedIntoTurnUpPortal()
         {
-            
+            INavigation navigate = ObjectRespository.driver.Navigate();
+            navigate.GoToUrl(ObjectRespository.config.GetWebsiteUrl());
+
+            //Login into the website
+            LoginPage login = new LoginPage();
+            login.LoginInSuccess(ObjectRespository.driver);
         }
 
         [Given(@"I have navigated to Time and Material page")]
         public void GivenIHaveNavigatedToTimeAndMaterialPage()
         {
-            
-        }
-
-        [Given(@"I am logged into TurnUp portal")]
-        public void GivenIAmLoggedIntoTurnUpPortal()
-        {
-            
+            AdminPage admin = new AdminPage();
+            admin.clickAdministration(ObjectRespository.driver);
+            admin.clickTimeMaterial(ObjectRespository.driver);
         }
 
         [Given(@"A table with TM records at Time and Material Page")]
@@ -37,7 +39,10 @@ namespace TurnUp.Hookup
         [When(@"I have clicked on the create new button")]
         public void WhenIHaveClickedOnTheCreateNewButton()
         {
-            
+            // Locate create new button and click on it
+            IWebElement create = ObjectRespository.driver.FindElement(By.XPath("//a[@href='/TimeMaterial/Create']"));
+
+            create.Click();
         }
 
         [When(@"Click on the next button on the bottom of the table")]

@@ -8,26 +8,20 @@ namespace TurnUp
 {
     public class AdminPage
     {
-        private IWebDriver driver;
-
-        public AdminPage(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-
+       
         //Click on the Administation
-        public void clickAdministration()
+        public void clickAdministration(IWebDriver driver)
         {
             // Locate and click on Adminstration
-            IWebElement admin = this.driver.FindElement(By.XPath("//a[contains(.,'Administration')]"));
+            IWebElement admin = driver.FindElement(By.XPath("//a[contains(.,'Administration')]"));
             admin.Click();
 
         }
 
-        public void clickTimeMaterial()
+        public void clickTimeMaterial(IWebDriver driver)
         {
             //Locate and click on Time and Material
-            IWebElement timematerial = this.driver.FindElement(By.XPath("//a[contains(.,'Time & Materials')]"));
+            IWebElement timematerial = driver.FindElement(By.XPath("//a[contains(.,'Time & Materials')]"));
             timematerial.Click();
         }
 

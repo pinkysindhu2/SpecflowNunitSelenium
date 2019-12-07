@@ -8,5 +8,6 @@ namespace TurnUp.CustomExceptions
         {
             Console.WriteLine(message);
         }
+
     }
 }

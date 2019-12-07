@@ -11,20 +11,15 @@ namespace TurnUp
 
     public class LoginPage
     {
-        private IWebDriver driver;
-        //constructor
-        public LoginPage(IWebDriver driver)
-        {
-            this.driver = driver;
-        }
-        
-        IWebElement email => this.driver.FindElement(By.Name("UserName"));
-        IWebElement password => this.driver.FindElement(By.Name("Password"));
-        IWebElement submit => this.driver.FindElement(By.CssSelector("input.btn.btn-default"));
-
+       
         //Login into website
-        public void LoginInSuccess()
+        public void LoginInSuccess(IWebDriver driver)
         {
+            // Defining the web elements with HTML corresponding elements
+            IWebElement email = driver.FindElement(By.Name("UserName"));
+            IWebElement password = driver.FindElement(By.Name("Password"));
+            IWebElement submit = driver.FindElement(By.CssSelector("input.btn.btn-default"));
+
             // Sending the emial and password
             email.SendKeys("hari");
             password.SendKeys("123123");

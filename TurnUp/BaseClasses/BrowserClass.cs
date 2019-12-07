@@ -35,7 +35,7 @@ namespace TurnUp.BaseClasses
         }
 
         // Should run before every test to initialize the driver
-        [SetUp]
+        [OneTimeSetUp]
         public void InitWebDriver()
         {
             ObjectRespository.config = new AppConfigReader();
@@ -44,17 +44,14 @@ namespace TurnUp.BaseClasses
             {
                 case BrowserType.Chrome:
                     ObjectRespository.driver = GetChromeWebDriver();
-                    BeforeEveryTest();
                     break;
 
                 case BrowserType.Firefox:
                     ObjectRespository.driver = GetFireFoxWebDriver();
-                    BeforeEveryTest();
                     break;
 
                 case BrowserType.IE:
-                    ObjectRespository.driver = GetIEWebDriver();
-                    BeforeEveryTest();
+                    ObjectRespository.driver = GetIEWebDriver();  
                     break;
 
                 default:
@@ -63,20 +60,12 @@ namespace TurnUp.BaseClasses
         }
 
         //Should Quit the Driver 
-        [TearDown]
-        public static void AfterEveryTest()
+        [OneTimeTearDown]
+        public static void QuitDriver()
         {
             ObjectRespository.driver.Quit();
         }
 
-        private void BeforeEveryTest()
-        {
-            INavigation navigate = ObjectRespository.driver.Navigate();
-            navigate.GoToUrl(ObjectRespository.config.GetWebsiteUrl());
 
-            //Login into the website
-            LoginPage login = new LoginPage(ObjectRespository.driver);
-            login.LoginInSuccess();
-        }
     }
 }

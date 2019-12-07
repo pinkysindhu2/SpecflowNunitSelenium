@@ -7,9 +7,7 @@ namespace TurnUp.Utilities
 {
     public class Sync
     {
-        public Sync()
-        {
-        }
+        
         // Generic method for explict wait until the item visible
         public static void waitVisibility(IWebDriver driver, string locator, string xpath, int sec)
         {   //Wait according to the locators
